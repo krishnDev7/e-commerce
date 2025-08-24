@@ -1,0 +1,19 @@
+# Build outputs
+dist/
+*.tsbuildinfo
+
+# Runtime files
+*.js
+*.d.ts
+!src/**/*.d.ts
+
+# Dependencies
+node_modules/
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db

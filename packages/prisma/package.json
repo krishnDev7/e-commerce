@@ -1,0 +1,17 @@
+{
+    "name": "@ecommerce/prisma",
+    "version": "0.1.0",
+    "private": true,
+    "license": "MIT",
+    "scripts": {
+        "prisma:generate": "prisma generate",
+        "prisma:migrate": "prisma migrate dev",
+        "prisma:studio": "prisma studio"
+    },
+    "devDependencies": {
+        "prisma": "^5.16.0"
+    },
+    "dependencies": {
+        "@prisma/client": "^5.16.0"
+    }
+}

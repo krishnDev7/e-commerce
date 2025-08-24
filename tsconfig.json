@@ -1,0 +1,23 @@
+{
+    "files": [],
+    "references": [
+        {
+            "path": "packages/prisma"
+        },
+        {
+            "path": "packages/api-client"
+        },
+        {
+            "path": "packages/shared"
+        },
+        {
+            "path": "packages/ui"
+        },
+        {
+            "path": "apps/api"
+        },
+        {
+            "path": "apps/web"
+        }
+    ]
+}

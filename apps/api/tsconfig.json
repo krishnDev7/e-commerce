@@ -1,0 +1,25 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+        "declaration": true,
+        "outDir": "dist",
+        "rootDir": "src",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true
+    },
+    "references": [
+        {
+            "path": "../../packages/prisma"
+        },
+        {
+            "path": "../../packages/shared"
+        }
+    ],
+    "include": [
+        "src"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist"
+    ]
+}

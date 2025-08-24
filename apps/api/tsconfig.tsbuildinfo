@@ -1,0 +1,1 @@
+{"root":["./src/app.module.ts","./src/main.ts","./src/prisma/prisma.module.ts","./src/prisma/prisma.service.ts","./src/product/product.controller.ts","./src/product/product.module.ts","./src/product/product.service.ts"],"version":"5.9.2"}

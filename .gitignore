@@ -1,0 +1,11 @@
+node_modules
+.DS_Store
+.env*
+.next
+coverage
+.dist
+build
+dist
+.prisma
+.prisma/**
+**/.turbo

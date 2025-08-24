@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+        "target": "ES2021",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "skipLibCheck": true,
+        "baseUrl": ".",
+        "paths": {
+            "@api-client/*": [
+                "packages/api-client/src/*"
+            ],
+            "@ui/*": [
+                "packages/ui/src/*"
+            ],
+            "@config/*": [
+                "packages/typescript-config/*"
+            ],
+            "@prisma": [
+                "packages/prisma/src/index.ts"
+            ],
+            "@shared/*": [
+                "packages/shared/src/*"
+            ]
+        }
+    }
+}

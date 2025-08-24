@@ -1,0 +1,33 @@
+{
+    "$schema": "https://turbo.build/schema.json",
+    "globalDependencies": [
+        "tsconfig.base.json"
+    ],
+    "tasks": {
+        "build": {
+            "dependsOn": [
+                "^build"
+            ],
+            "outputs": [
+                "dist/**",
+                "build/**",
+                ".next/**"
+            ],
+            "cache": true
+        },
+        "dev": {
+            "cache": false,
+            "persistent": true
+        },
+        "lint": {},
+        "format": {},
+        "prisma:generate": {
+            "outputs": [
+                "node_modules/.prisma/**",
+                "prisma/generated/**"
+            ]
+        },
+        "prisma:migrate": {},
+        "prisma:studio": {}
+    }
+}

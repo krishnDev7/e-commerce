@@ -1,0 +1,52 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+        "jsx": "preserve",
+        "types": [
+            "node",
+            "react"
+        ],
+        "allowJs": false,
+        "esModuleInterop": true,
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "rootDir": ".",
+        "noEmit": true,
+        "lib": [
+            "dom",
+            "dom.iterable",
+            "esnext"
+        ],
+        "incremental": true,
+        "isolatedModules": true,
+        "plugins": [
+            {
+                "name": "next"
+            }
+        ]
+    },
+    "references": [
+        {
+            "path": "../../packages/api-client"
+        },
+        {
+            "path": "../../packages/ui"
+        },
+        {
+            "path": "../../packages/shared"
+        }
+    ],
+    "include": [
+        "next-env.d.ts",
+        "app/**/*",
+        "components/**/*",
+        "**/*.ts",
+        "**/*.tsx",
+        ".next/types/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        ".next",
+        "dist"
+    ]
+}

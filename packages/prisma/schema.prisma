@@ -1,0 +1,94 @@
+// Prisma schema for e-commerce baseline
+// Extend with categories, orders, payments later.
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["fullTextSearch"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "prisma+postgres://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqd3RfaWQiOjEsInNlY3VyZV9rZXkiOiJza19idWlsLWNUaEFHeHRQRFhGaklreWwiLCJhcGlfa2V5IjoiMDFLM0RXUVNHOTkwTVJSNkVHOUc0N1pFNVkiLCJ0ZW5hbnRfaWQiOiJlOWU5Y2Q2ODNiOTdhOTY0YzE4NWQxYmRhYjljNzg4OGQ0ZDQ3ZjA3Yzc1NzNlNzg0NWRmODk1ZWIwMGFkNDJlIiwiaW50ZXJuYWxfc2VjcmV0IjoiMWI5NDlkMjUtOWY3OS00ZTQ2LTlmY2EtNjM5OGVlZmZmNDRhIn0.Bjy2kj_R44iciCH6Zf3di3-hafQo_eu6WipSNqh_RLA"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  orders    Order[]
+}
+
+model Product {
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  title       String
+  subtitle    String?
+  description String
+  priceCents  Int
+  currency    String    @default("USD")
+  imageUrl    String?
+  gallery     String[]  @default([])
+  stock       Int       @default(0)
+  active      Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  orderItems  OrderItem[]
+  categories  Category[]
+  categoryLinks ProductCategory[]
+}
+
+model Category {
+  id        String    @id @default(cuid())
+  slug      String    @unique
+  name      String
+  products  Product[]
+  productLinks ProductCategory[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+// Explicit join table (optional now but allows future metadata like sortOrder)
+model ProductCategory {
+  product   Product  @relation(fields: [productId], references: [id])
+  productId String
+  category  Category @relation(fields: [categoryId], references: [id])
+  categoryId String
+  assignedAt DateTime @default(now())
+
+  @@id([productId, categoryId])
+  @@index([categoryId])
+}
+
+model Order {
+  id         String      @id @default(cuid())
+  user       User        @relation(fields: [userId], references: [id])
+  userId     String
+  status     OrderStatus @default(PENDING)
+  totalCents Int
+  currency   String      @default("USD")
+  items      OrderItem[]
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+}
+
+model OrderItem {
+  id         String   @id @default(cuid())
+  order      Order    @relation(fields: [orderId], references: [id])
+  orderId    String
+  product    Product  @relation(fields: [productId], references: [id])
+  productId  String
+  quantity   Int      @default(1)
+  unitPriceCents Int
+  createdAt  DateTime @default(now())
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  FULFILLED
+  CANCELLED
+  REFUNDED
+}
